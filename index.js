@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   res.json({ msg: "hello, from the other side" });
 });
 
-app.listen(PORT, async () => {
-  await connection();
-  console.log(`server started at http://localhost:${PORT}`);
+app.listen(process.env.PORT || 8000, (err) => {
+  if (err) throw err;
+  console.log("> Ready on http://localhost:8000");
 });
