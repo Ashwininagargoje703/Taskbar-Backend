@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+require("dotenv").config();
 const connection = require("./src/config/dbConfig");
 const user_router = require("./src/routes/user_router");
 const list_router = require("./src/routes/list_router");
@@ -18,7 +19,7 @@ app.get("/", (req, res) => {
   res.json({ msg: "hello, from the other side" });
 });
 
-app.listen(process.env.PORT || 8000, (err) => {
-  if (err) throw err;
-  console.log("> Ready on http://localhost:8000");
+app.listen(PORT, async () => {
+  await connection();
+  console.log(`server started at http://localhost:${PORT}`);
 });
